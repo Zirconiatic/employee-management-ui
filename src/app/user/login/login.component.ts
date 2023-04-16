@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         setTimeout(()=>{
           console.log("set timeout called")
           this.router.navigate(['/dashboard']);
-        }, 5000);
+        }, 2000);
       },
       error: (err) => {
         console.log("Inside Error");

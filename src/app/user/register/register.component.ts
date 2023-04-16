@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
                         setTimeout(()=>{
                           console.log("set timeout called")
                           this.router.navigate(['/login']);
-                        }, 5000);
+                        }, 2000);
                       },
       error: (err) => {
                         console.log("Inside Error");

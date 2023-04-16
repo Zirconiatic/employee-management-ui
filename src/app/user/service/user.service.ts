@@ -23,4 +23,8 @@ export class UserService {
     return this.http.post(this.baseUrl+"/authenticate",credentials);
   }
 
+  updateUser(user:User){
+    return this.http.put(this.baseUrl+"/update",user);
+  }
+
 }

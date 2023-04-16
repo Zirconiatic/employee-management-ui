@@ -1,42 +1,86 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
     <div class="container">
-      <a class="navbar-brand" href="#">Hi {{this.user.username}}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><a class="dropdown-item" (click)="this.onClick()">Logout</a></li>
+        <a class="navbar-brand" href="#">Hi {{this.user.username}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Dropdown link
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a class="dropdown-item" (click)="this.onLogout()">Logout</a></li>
+                        <li><a class="dropdown-item" (click)="this.onEdit()">Edit Profile</a></li>
+                    </ul>
+                </li>
             </ul>
-          </li>
-        </ul>
-      </div>
+        </div>
     </div>
 </nav>
 <div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Date Of Birth</th>
-                <th>Phone Number</th>
-                <th>Current Time</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{this.user.username}}</td>
-                <td>{{this.user.dateOfBirth}}</td>
-                <td>{{this.user.phoneNumber}}</td>
-                <td>{{this.today}}</td>
-                <td>{{this.user.addr1 +" "+ this.user.addr2 +" "+ this.user.addr3 +" "+ this.user.postalCode}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Date Of Birth</th>
+                    <th>Phone Number</th>
+                    <th>Time</th>
+                    <th>Address1</th>
+                    <th>Address2</th>
+                    <th>Address3</th>
+                    <th>Postal Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="this.user.username" name="username"
+                            [disabled]="!this.areFieldsEditable" />
+                    </td>
+                    <td>
+                        <input type="date" class="form-control" [(ngModel)]="this.user.dateOfBirth" name="dateOfBirth"
+                            [disabled]="!this.areFieldsEditable" />
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" [(ngModel)]="this.user.phoneNumber" name="phoneNumber"
+                            [disabled]="!this.areFieldsEditable" />
+                    </td>
+                    <td>
+                        {{this.today | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="this.user.addr1" name="addr1"
+                            [disabled]="!this.areFieldsEditable" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="this.user.addr2" name="addr2"
+                            [disabled]="!this.areFieldsEditable" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="this.user.addr3" name="addr3"
+                            [disabled]="!this.areFieldsEditable" />
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" [(ngModel)]="this.user.postalCode" name="postalCode"
+                            [disabled]="!this.areFieldsEditable" />
+                    </td>
+                    <td>
+                        <button class="btn btn-success"
+                            [disabled]="!this.areFieldsEditable">Save</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="container">
+    <div class="alert alert-success alert-dismissible fade show mt-5" [ngClass]="{'alert-success' : this.isSuccess, 'alert-danger' : !this.isSuccess}" role="alert" *ngIf="this.showPopup">
+        {{this.popupContent}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 </div>
