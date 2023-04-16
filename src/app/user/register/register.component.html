@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="alert alert-success alert-dismissible fade show mt-5" [ngClass]="{'alert-success' : this.isSuccess, 'alert-danger' : !this.isSuccess}" role="alert" *ngIf="this.showPopup">
+        {{this.popupContent}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="row align-items-center align-row-center">
+        <div class="col-lg-8">
+            <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col">
+                                <h3>Register</h3>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-2 text-center">
+                                <label>Username: </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="login_username" class="form-control" ngModel
+                                    name="login_username" required #username="ngModel" pattern="[a-zA-Z]*">
+                                <span class="help-block" *ngIf="!username.valid && username.touched"><small>Please enter valid username!</small></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                <label>Address Line1: </label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="login_addr1" class="form-control" ngModel name="login_addr1" required #addr1="ngModel">
+                                <span class="help-block" *ngIf="!addr1.valid && addr1.touched"><small>Please enter valid address!</small></span>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-2 text-center">
+                                <label>Password: </label>
+                            </div>
+                            <div class="col">
+                                <input type="password" id="login_password" class="form-control" ngModel
+                                    name="login_password" required #password="ngModel" pattern="[a-zA-Z0-9]*">
+                                <span class="help-block" *ngIf="!password.valid && password.touched"><small>Please enter valid password!</small></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                <label>Address Line2: </label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="login_addr2" class="form-control" ngModel name="login_addr2" required #addr2="ngModel">
+                                <span class="help-block" *ngIf="!addr2.valid && addr2.touched"><small>Please enter valid address!</small></span>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-2 text-center">
+                                <label>First Name:</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="login_fname" class="form-control" ngModel name="login_fname" required #fname="ngModel">
+                                <span class="help-block" *ngIf="!fname.valid && fname.touched"><small>Please enter valid firstname!</small></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                <label>Address Line3: </label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="login_addr3" class="form-control" ngModel name="login_addr3" required #addr3="ngModel">
+                                <span class="help-block" *ngIf="!addr3.valid && addr3.touched"><small>Please enter valid address!</small></span>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-2 text-center">
+                                <label>Last Name:</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="login_lname" class="form-control" ngModel name="login_lname" required #lastname="ngModel">
+                                <span class="help-block" *ngIf="!lastname.valid && lastname.touched"><small>Please enter valid lastname!</small></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                <label>Postal Code: </label>
+                            </div>
+                            <div class="col-4">
+                                <input type="number" id="login_postalcode" class="form-control" ngModel name="login_postalcode" required #postalcode="ngModel">
+                                <span class="help-block" *ngIf="!postalcode.valid && postalcode.touched"><small>Please enter valid postalcode!</small></span>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-2 text-center">
+                                <label>Date of Birth:</label>
+                            </div>
+                            <div class="col">
+                                <input type="date" id="login_dob" class="form-control" ngModel name="login_dob" required #dob="ngModel">
+                                <span class="help-block" *ngIf="!dob.valid && dob.touched"><small>Please enter valid date of birth!</small></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                <label>Phone Number: </label>
+                            </div>
+                            <div class="col-4">
+                                <input type="number" id="login_phoneno" class="form-control" ngModel
+                                    name="login_phoneno" required #phonenumber="ngModel" pattern="[0-9]*">
+                                <span class="help-block" *ngIf="!phonenumber.valid && phonenumber.touched"><small>Please enter valid phone number!</small></span>
+                            </div>
+                        </div>
+                        <div class="row mt-3 text-center">
+                            <div class="col">
+                                <button 
+                                class="btn btn-success btn-md pt-2 pb-2" 
+                                type="submit" 
+                                [disabled]="!f.valid"
+                                >Submit</button>
+                            </div>
+                        </div>
+                        <div class="row mt-3 text-center">
+                            <div class="col">
+                                <small><b><a routerLink="/login">Already Registered? sign in now!</a></b></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

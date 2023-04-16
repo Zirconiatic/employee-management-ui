@@ -1,0 +1,13 @@
+.align-row-center {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 12vw;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
