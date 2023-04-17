@@ -27,4 +27,12 @@ export class UserService {
     return this.http.put(this.baseUrl+"/update",user);
   }
 
+  getAllUsers(){
+    return this.http.get<User[]>(this.baseUrl+"/get/users");
+  }
+
+  updateAllUsers(user : User[]){
+    return this.http.put(this.baseUrl+"/update/users",user);
+  }
+
 }

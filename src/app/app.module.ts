@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
+import { ReplacePipe } from './common/pipes/replace.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PageNotFoundComponent } from './common/page-not-found/page-not-found.co
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserModule,

@@ -9,4 +9,6 @@ export class User {
     public addr3!: string;
     public postalCode!: number;
     public phoneNumber!: number;
+    public admin!: boolean;
+    public validated!: boolean;
 }

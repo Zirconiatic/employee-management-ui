@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
   user! : User;
   today = new Date();
   areFieldsEditable : boolean = false;
+  isUserAdmin : boolean = false;
+  userList : User[] = [];
 
   constructor(private authenticationService: AuthenticationService,
               private route: Router,
@@ -26,6 +28,21 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(this.authenticationService.getSessionStorageItem()!);
+    
+    this.isUserAdmin = this.user.admin;
+
+    this.userService.getAllUsers().subscribe({
+      next: (val) => { 
+        console.log(val);
+        this.userList = val;
+      },
+      error: (err) => {
+        console.log(err)
+      },
+      complete: () => {
+        console.log("Request Completed.")
+      }     
+    })
   }
 
   onLogout(){
@@ -60,6 +77,32 @@ export class DashboardComponent implements OnInit {
       }     
     });
     this.onEdit();
+  }
+
+  onChecked(){
+    console.log("Checked")
+  }
+
+  update(){
+    console.log(this.userList);
+    this.userService.updateAllUsers(this.userList).subscribe({
+      next: (val) => { 
+        console.log("Successfully Updated!")
+        this.isSuccess = true;
+        this.popupContent = "Successfully Updated!";
+        this.showPopup = true;
+        console.log(val);
+      },
+      error: (err) => {
+        console.log("Inside Error");
+        this.isSuccess = false;
+        this.popupContent = "Error Updating. Please try again.";
+        this.showPopup = true;
+      },
+      complete: () => {
+        console.log("Request Completed.")
+      }     
+    })
   }
   
 }
